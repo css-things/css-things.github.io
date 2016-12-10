@@ -1,2 +1,2 @@
-# css-things.github.io
+# CSS-Things.github.io
 http://CSS-Things.github.io
