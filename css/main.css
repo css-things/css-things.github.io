@@ -4239,7 +4239,34 @@ h1 span{
 	line-height: 1.85em;
 	font-weight: normal;
 }
-
 section h1{
 	margin: 1em;
+}
+button{
+	transition: box-shadow .2s;
+	will-change: box-shadow;
+}
+button:focus{
+	outline: none;
+	box-shadow: inset 0 0 0 4px #51BAA4;
+}
+article .plauground{
+	width: 48%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+article .plauground:before{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	border-left: 2px solid #51baa4;
+	height: 50%;
+}
+article.feature{
+	display: flex;
+	align-items: stretch;
 }

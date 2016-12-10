@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/page.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -19,9 +21,61 @@
             <h1>Тултип</h1>
         </header>
 
-        <p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.</p>
-        <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
-        <p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.</p>
+        <div id="playground">
+            <button
+                data-tooltip="Текст с подсказкой"
+                class="big"
+            >
+                Кнопка
+            </button>
+        </div>
+
+        <blockquote>
+            <b>Тултип</b> - всплывающая подсказка.
+        </blockquote>
+
+        <p>
+            Всплывающие подсказки на CSS сделать весьма просто, для этого не нужны сложные манипуляции.
+        </p>
+        <p>
+            Чтобы не засорять разметку, для тултипа будем использовать псевдо-элемент <code>:before</code>. Текст же подсказки в этом случае будем брать из соответствующего атрибута элемента.
+        </p>
+
+        <p>
+            Разметка будет иметь следующий вид:
+        </p>
+        <pre><code>
+&lt;button data-tooltip="Текст с подсказкой"&gt;Кнопка&lt;/button&gt;
+        </code></pre>
+
+        <p>
+            Для того, чтобы это работало, добавим псевдоэлемент <code>:before</code> в элемент с атрибутом <code>data-tooltip</code>. Чтобы получить текст из атрибута в качестве текста подсказки, воспользуемся функцией <code>attr()</code>, в качестве аргумента которой передадим имя атрибута, из которого хотим получить содержимое. Такая возможность была еще в CSS2:
+        </p>
+
+        <pre><code>
+[data-tooltip]:before{
+    content: attr(data-tooltip);
+}
+        </code></pre>
+
+        <p>
+            Основная техническая часть готова. Осталось стилизовать наш тултип, спозиционировав его абсолютно (не забываем, что сам элемент должен иметь <code>position: relative</code>). А поскольку должен быть виден он только при наведении курсора на элемент, скроем его. Для показа по наведению зададим видимость для псевдо-селектора <code>:hover</code>:
+        </p>
+
+        <pre><code>
+[data-tooltip]:before{
+    content: attr(data-tooltip);
+    /* Позиционирование */
+    opacity: 0;
+}
+[data-tooltip]:hover:before{
+    opacity: 1;
+}
+        </code></pre>
+
+        <p>
+            На этом все. Как разукрасить и какую анимацию добавить, решите сами.
+        </p>
 
     </div>
 </section>
